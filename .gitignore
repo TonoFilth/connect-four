@@ -1,0 +1,11 @@
+# FOLDERS
+bin/
+lib/
+.obj/
+.obj_tests/
+trash/
+
+# FILES
+a.out
+*.psd
+
