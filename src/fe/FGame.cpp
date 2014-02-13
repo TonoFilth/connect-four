@@ -239,12 +239,38 @@ bool FGame::CheckWin() const
 
 bool FGame::CheckWinRow(const UI32 row, const TPlayerMovements& movements) const
 {
-	return false;
+	UI32 consecutives = 0;
+
+	for (auto& movement : movements[row])
+	{
+		++consecutives;
+
+		if (movement != m_CurrentPlayer)
+			consecutives = 0;
+
+		if (consecutives == 4)
+			break;
+	}
+
+	return consecutives == 4;
 }
 
 bool FGame::CheckWinColumn(const UI32 column, const TPlayerMovements& movements) const
 {
-	return false;
+	UI32 consecutives = 0;
+
+	for (auto& row : movements)
+	{
+		++consecutives;
+
+		if (row[column] != m_CurrentPlayer)
+			consecutives = 0;
+
+		if (consecutives == 4)
+			break;
+	}
+
+	return consecutives == 4;
 }
 
 bool FGame::CheckTie() const
@@ -261,11 +287,121 @@ bool FGame::CheckTie() const
 
 bool FGame::CheckWinLRDiagonal(const TPlayerMovements& movements) const
 {
+	if (movements.empty())
+		return false;
+
+	UI32 consecutives = 0;
+	UI32 curRow = 0, curCol = 0;
+	UI32 numRows = movements.size(), numCols = movements[0].size();
+
+	for (UI32 i = 0; i < numCols; ++i)
+	{
+		curRow = 0;
+		curCol = i;
+		consecutives = 0;
+
+		for (UI32 j = 0; j < numRows; ++j)
+		{
+			++consecutives;
+
+			if (movements[curRow][curCol] != m_CurrentPlayer)
+				consecutives = 0;
+
+			++curRow;
+			++curCol;
+
+			if (curCol >= numCols || consecutives == 4)
+				break;
+		}
+
+		if (consecutives == 4)
+			return true;
+	}
+
+	for (UI32 i = 1; i < numRows; ++i)
+	{
+		curRow = i;
+		curCol = 0;
+		consecutives = 0;
+
+		for (UI32 j = 0; j < numCols; ++j)
+		{
+			++consecutives;
+
+			if (movements[curRow][curCol] != m_CurrentPlayer)
+				consecutives = 0;
+
+			++curRow;
+			++curCol;
+
+			if (curRow >= numRows || consecutives == 4)
+				break;
+		}
+
+		if (consecutives == 4)
+			return true;
+	}
+
 	return false;
 }
 
 bool FGame::CheckWinRLDiagonal(const TPlayerMovements& movements) const
 {
+	if (movements.empty())
+		return false;
+
+	I32 consecutives = 0;
+	I32 curRow = 0, curCol = 0;
+	I32 numRows = movements.size(), numCols = movements[0].size();
+
+	for (I32 i = numCols - 1; i >= 0; --i)
+	{
+		curRow = 0;
+		curCol = i;
+		consecutives = 0;
+
+		for (I32 j = 0; j < numRows; ++j)
+		{
+			++consecutives;
+
+			if (movements[curRow][curCol] != m_CurrentPlayer)
+				consecutives = 0;
+
+			++curRow;
+			--curCol;
+
+			if (curCol < 0 || consecutives == 4)
+				break;
+		}
+
+		if (consecutives == 4)
+			return true;
+	}
+
+	for (I32 i = 1; i < numRows; ++i)
+	{
+		curRow = i;
+		curCol = numCols - 1;
+		consecutives = 0;
+
+		for (I32 j = numCols - 1; j >= 0; --j)
+		{
+			++consecutives;
+
+			if (movements[curRow][curCol] != m_CurrentPlayer)
+				consecutives = 0;
+
+			++curRow;
+			--curCol;
+
+			if (curRow >= numRows || consecutives == 4)
+				break;
+		}
+
+		if (consecutives == 4)
+			return true;
+	}
+
 	return false;
 }
 
