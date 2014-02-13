@@ -13,7 +13,7 @@ namespace fe
 FGame::FGame(const UI16 windowWidth, const UI16 windowHeight) :
 	m_Board(nullptr),
 	m_CurrentPlayer(TPlayerID::PLAYER2),
-	m_CursorSprite(GameConstants::CursorTexture),
+	m_CursorSprite(GameConstants::CursorChipATexture),
 	m_BackgroundSprite(GameConstants::GameBackgroundTexture),
 	m_Score{ 0, 0 },
 	m_GameState(TGameState::PLAYING),
@@ -172,7 +172,7 @@ void FGame::UpdateCursor()
 
 	m_CursorSprite.setPosition(
 		boardBounds.left + (newPos.y * m_Board->GetSquareSize().x) + midSquare - midCursor,
-		boardBounds.top - boardBounds.top * 0.55);
+		boardBounds.top - boardBounds.top * 0.45);
 }
 
 void FGame::NextPlayerTurn()
@@ -180,11 +180,13 @@ void FGame::NextPlayerTurn()
 	if (m_CurrentPlayer == TPlayerID::PLAYER1)
     {
     	m_CurrentPlayer = TPlayerID::PLAYER2;
+    	m_CursorSprite.setTexture(GameConstants::CursorChipBTexture);
     	m_HUD.UpdateGameMessage("Player's 2 turn");
     }
     else
     {
     	m_CurrentPlayer = TPlayerID::PLAYER1;
+    	m_CursorSprite.setTexture(GameConstants::CursorChipATexture);
     	m_HUD.UpdateGameMessage("Player's 1 turn");
     }
 }
@@ -204,7 +206,7 @@ void FGame::OnRoundEnd()
 		if (m_CurrentPlayer == TPlayerID::PLAYER1)
 		{
 			++m_Score[0];
-			m_HUD.UpdateGameMessage("Player 1 wins!", Color(12, 118, 232));
+			m_HUD.UpdateGameMessage("Player 1 wins!", Color(180, 156, 22));
 		}
 		else
 		{

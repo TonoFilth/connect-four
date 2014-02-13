@@ -14,17 +14,20 @@ const string GameConstants::GameBackgroundTextureFile("assets/images/background.
 const string GameConstants::Player1TextureFile("assets/images/chip-a.png");
 const string GameConstants::Player2TextureFile("assets/images/chip-b.png");
 const string GameConstants::SquareTextureFile("assets/images/square.png");
-const string GameConstants::CursorTextureFile("assets/images/cursor-arrow.png");
+const string GameConstants::CursorChipATextureFile("assets/images/cursor-chip-a.png");
+const string GameConstants::CursorChipBTextureFile("assets/images/cursor-chip-b.png");
 const string GameConstants::HudFontFile("assets/fonts/Exo-Black.otf");
 
-const Vector2u GameConstants::WindowSize(500, 600);
+const Vector2u GameConstants::WindowSize(600, 600);
 const Vector2u GameConstants::BoardSize(7, 6);
 const Vector2u GameConstants::SquareSize(64, 64);
 
 const Color GameConstants::HudBackgroundColor(0, 0, 0, 200);
 const Color GameConstants::HudPlayerNameColor(Color::White);
 const Color GameConstants::HudScoreboardColor(Color::White);
-const Color GameConstants::HudGameMessageColor(Color::White);
+const Color GameConstants::HudGameMessageColor(Color::Black);
+const Color GameConstants::HudGameMessageBackgroundColor(255, 255, 255, 180);
+const Color GameConstants::HudGameMessageOutlineColor(60, 67, 50);
 
 const UI32 GameConstants::HudPlayerNameTextSize  = 24;
 const UI32 GameConstants::HudScoreboardTextSize  = 24;
@@ -40,7 +43,8 @@ Texture GameConstants::GameBackgroundTexture;
 Texture GameConstants::Player1Texture;
 Texture GameConstants::Player2Texture;
 Texture GameConstants::SquareTexture;
-Texture GameConstants::CursorTexture;
+Texture GameConstants::CursorChipATexture;
+Texture GameConstants::CursorChipBTexture;
 
 Font GameConstants::HudFont;
 
@@ -58,7 +62,8 @@ bool GameConstants::Init()
 		!Player1Texture.loadFromFile(Player1TextureFile) ||
 		!Player2Texture.loadFromFile(Player2TextureFile) ||
 		!SquareTexture.loadFromFile(SquareTextureFile)   ||
-		!CursorTexture.loadFromFile(CursorTextureFile))
+		!CursorChipATexture.loadFromFile(CursorChipATextureFile) ||
+		!CursorChipBTexture.loadFromFile(CursorChipBTextureFile))
 	{
 		cerr << "Can't load textures" << endl;
 		return false;

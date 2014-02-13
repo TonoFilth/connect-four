@@ -43,7 +43,9 @@ GameHud::GameHud(const Vector2f& size) :
 	m_Player2Name.setColor(GameConstants::HudPlayerNameColor);
 	m_Scoreboard.setColor(GameConstants::HudScoreboardColor);
 	m_GameMessage.setColor(GameConstants::HudGameMessageColor);
-	m_GameMessageBackground.setFillColor(GameConstants::HudBackgroundColor);
+	m_GameMessageBackground.setFillColor(GameConstants::HudGameMessageBackgroundColor);
+	m_GameMessageBackground.setOutlineColor(GameConstants::HudGameMessageOutlineColor);
+	m_GameMessageBackground.setOutlineThickness(3);
 
 	m_Player1Name.scale(0.9, 0.9);
 	m_Player2Name.scale(0.9, 0.9);
@@ -110,7 +112,7 @@ void GameHud::UpdateGameMessage(const std::string& message, const sf::Color& col
 void GameHud::UpdateGameMessage(const std::string& message, UI32 timeout,
 	const Callback& callback)
 {
-	UpdateGameMessage(message, Color::White, timeout, callback);
+	UpdateGameMessage(message, GameConstants::HudGameMessageColor, timeout, callback);
 }
 
 void GameHud::UpdateGameMessage(const string& message, const Color& messageColor,

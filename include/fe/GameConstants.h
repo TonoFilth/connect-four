@@ -16,7 +16,8 @@ private:
 	static const std::string Player1TextureFile;
 	static const std::string Player2TextureFile;
 	static const std::string SquareTextureFile;
-	static const std::string CursorTextureFile;
+	static const std::string CursorChipATextureFile;
+	static const std::string CursorChipBTextureFile;
 	static const std::string HudFontFile;
 	
 	static bool st_Initialized;
@@ -33,7 +34,8 @@ public:
 	static sf::Texture Player1Texture;
 	static sf::Texture Player2Texture;
 	static sf::Texture SquareTexture;
-	static sf::Texture CursorTexture;
+	static sf::Texture CursorChipATexture;
+	static sf::Texture CursorChipBTexture;
 
 	static const sf::Vector2u WindowSize;
 	static const sf::Vector2u BoardSize;
@@ -43,6 +45,8 @@ public:
 	static const sf::Color HudPlayerNameColor;
 	static const sf::Color HudScoreboardColor;
 	static const sf::Color HudGameMessageColor;
+	static const sf::Color HudGameMessageBackgroundColor;
+	static const sf::Color HudGameMessageOutlineColor;
 
 	static const UI32 HudPlayerNameTextSize;
 	static const UI32 HudScoreboardTextSize;
