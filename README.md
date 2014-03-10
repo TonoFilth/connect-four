@@ -2,7 +2,7 @@ connect-four
 ============
 
 A simple connect four game
-## BUILD AND RUN
+## Build and run
 
 **Pre-requisites**  
 You need **[SFML 2.1](http://sfml-dev.org/)** installed in your system to run this game
@@ -18,7 +18,7 @@ $ make
 $ ./bin/connect-four
 ```
 
-## SCREENSHOTS
+## Screenshots
 
 ![alt tag](http://oi60.tinypic.com/vr67lx.jpg)
 ![alt tag](http://oi58.tinypic.com/j0ftsl.jpg)
